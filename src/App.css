@@ -3,3 +3,7 @@ button {
   height: 100px;
   font-size: 32px;
 }
+
+.hide {
+  display: none;
+}
