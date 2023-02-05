@@ -1,6 +1,4 @@
 import "./App.css";
-// import "node_modules/video-react/dist/video-react.css";
-import { Player } from "video-react";
 import { useState } from "react";
 
 function Video({ helper }) {
@@ -15,14 +13,24 @@ function Video({ helper }) {
       ></video>
       <br></br>
       <button
-        onClick={() => handelBtn(helper.start.nextVid1, helper.setCurrentVideo)}
+        onClick={() =>
+          handelBtn(
+            helper[helper.currentVideo].nextVid1,
+            helper.setCurrentVideo
+          )
+        }
       >
-        {helper.start.btn1Value}
+        {helper[helper.currentVideo].btn1Value}
       </button>
       <button
-        onClick={() => handelBtn(helper.start.nextVid2, helper.setCurrentVideo)}
+        onClick={() =>
+          handelBtn(
+            helper[helper.currentVideo].nextVid2,
+            helper.setCurrentVideo
+          )
+        }
       >
-        {helper.start.btn2Value}
+        {helper[helper.currentVideo].btn2Value}
       </button>
     </div>
   );
@@ -54,17 +62,33 @@ function App() {
       nextVid1: "lesbiangirl",
       nextVid2: "heterogirl",
     },
+    gayboy: {
+      btn1Value: "END",
+      btn2Value: "END",
+      nextVid1: "gayboy",
+      nextVid2: "gayboy",
+    },
+    heteroboy: {
+      btn1Value: "END",
+      btn2Value: "END",
+      nextVid1: "heteroboy",
+      nextVid2: "heteroboy",
+    },
+    lesbiangirl: {
+      btn1Value: "END",
+      btn2Value: "END",
+      nextVid1: "lesbiangirl",
+      nextVid2: "lesbiangirl",
+    },
+    heterogirl: {
+      btn1Value: "END",
+      btn2Value: "END",
+      nextVid1: "heterogirl",
+      nextVid2: "heterogirl",
+    },
   };
   return (
     <div className="App">
-      {/* <Video
-        title={curretnVideo}
-        btn1Value="Chłop"
-        btn2Value="Baba"
-        nextVid1="boy"
-        nextVid2="girl"
-        setCurrentVideo={setCurrentVideo}
-      /> */}
       <Video helper={helper} />
     </div>
   );
