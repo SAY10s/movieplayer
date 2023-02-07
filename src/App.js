@@ -9,8 +9,6 @@ function Video({ videos }) {
   let opt2req = videos[videos.currentVideo].opt2req;
 
   if (typeof opt1req !== "undefined") {
-    // console.log(opt1req);
-    // console.log("gay" + videos.realtions.gayness);
     if (
       opt1req.expression == "<" &&
       videos.realtions.gayness >= opt1req.value
@@ -35,7 +33,7 @@ function Video({ videos }) {
         height="720"
         type="video/mp4"
         id="film"
-        // controls
+        controls
         autoPlay
         // muted
       ></video>
@@ -62,9 +60,9 @@ function Video({ videos }) {
             videos[videos.currentVideo].nextVid2,
             videos.setCurrentVideo,
             videos.setRelations,
-            videos[videos[videos.currentVideo].nextVid1].questionTime,
+            videos[videos[videos.currentVideo].nextVid2].questionTime,
             videos.realtions,
-            videos[videos[videos.currentVideo].nextVid1].gayness
+            videos[videos[videos.currentVideo].nextVid2].gayness
           )
         }
       >
@@ -81,7 +79,7 @@ function handelBtn(
   relations,
   gayness
 ) {
-  if (typeof questionTime == "undefined") questionTime = 2000;
+  if (typeof questionTime == "undefined") questionTime = 500;
   document.querySelector("#btn1").classList.add("hide");
   document.querySelector("#btn2").classList.add("hide");
   setCurrentVideo(nextVideo);
@@ -121,7 +119,7 @@ function App() {
     boy: {
       btn1Value: "Gay",
       btn2Value: "Hetero",
-      questionTime: 5000,
+      // questionTime: 5000,
       nextVid1: "gayboy",
       nextVid2: "heteroboy",
     },
@@ -135,14 +133,14 @@ function App() {
       btn1Value: "Dożyj starości (dalej)",
       btn2Value: "Umrzyj tak o (dalej)",
       gayness: 1,
-      questionTime: 8000,
+      // questionTime: 8000,
       nextVid1: "dead",
       nextVid2: "dead",
     },
     heteroboy: {
       btn1Value: "Dożyj starości (dalej)",
       btn2Value: "Umrzyj tak o (dalej)",
-      questionTime: 10000,
+      // questionTime: 10000,
       nextVid1: "dead",
       nextVid2: "dead",
     },
