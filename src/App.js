@@ -36,11 +36,13 @@ function Video({ videos }) {
   let opt2req = videos[videos.currentVideo].opt2req;
 
   if (typeof opt1req !== "undefined") {
-    if (opt1req.expression == "<" && videos.relations.hanks >= opt1req.value) {
+    if (
+      opt1req.expression == "==" &&
+      videos.relations["kodnuklearny"] != opt1req.value
+    ) {
       btn1value = "[zablokowane]";
     }
   }
-
   if (typeof opt2req !== "undefined") {
     if (opt2req.expression == "<" && videos.relations.hanks >= opt2req.value) {
       btn2value = "[zablokowane]";
@@ -224,15 +226,79 @@ function App() {
     },
     wejsciedobazysamemu: {
       btn1Value: "Wpisz kod i wejdź",
+      opt1req: {
+        param: "kodnuklearny",
+        expression: "==",
+        value: 1,
+      },
       btn2Value: "Idź dalej",
       nextVid1: "zdobyciepilota",
       nextVid2: "ignorujeszdrzwiodbomby",
     },
+    ignorujeszdrzwiodbomby: {
+      btn1Value: "dalej",
+      nextVid1: "zabijaniewbazie",
+    },
+    zdobyciepilota: {
+      btn1Value: "Użyj pilota",
+      btn2Value: "Schowaj pilot do kieszeni",
+      nextVid1: "bombaatomowa",
+      nextVid2: "schowajpilota",
+    },
+    bombaatomowa: {
+      btn1Value: "[end]",
+      btn2Value: "[end]",
+      nextVid1: "start",
+      nextVid2: "start",
+    },
+    schowajpilota: {
+      btn1Value: "dalej",
+      nextVid1: "zabijaniewbazie",
+    },
     naradawojskowa: {
-      btn1Value: "Przyjmij zlecenie",
-      btn2Value: "Odrzuć zlecenie",
-      nextVid1: "poznaniehanksa",
-      nextVid2: "grzegorzkill",
+      btn1Value: "Zabij dzieci w Afryce",
+      btn2Value: `"To... nieludzkie"`,
+      nextVid1: "niggersdie",
+      nextVid2: "niggerslive",
+    },
+    niggersdie: {
+      hanks: -1,
+      btn1Value: "[dalej]",
+      nextVid1: "treningsamemu",
+    },
+    niggerslive: {
+      hanks: 1,
+      btn1Value: "Tak? A ja mam to w dupie.",
+      btn2Value: "[słuchaj dalej]",
+      btn3Value: `"Ooo, a co było dalej? "`,
+      nextVid1: "walsiehanks",
+      nextVid2: "sluchamhanksa",
+      nextVid3: "sluchamzzainteresowaniem",
+    },
+    walsiehanks: {
+      hanks: -1,
+      btn1Value: "[dalej]",
+      nextVid1: "treningzhanksem",
+    },
+    sluchamhanksa: {
+      hanks: 0,
+      btn1Value: "[dalej]",
+      nextVid1: "treningzhanksem",
+    },
+    sluchamzzainteresowaniem: {
+      hanks: 1,
+      btn1Value: "[dalej]",
+      nextVid1: "treningzhanksem",
+    },
+    treningzhanksem: {
+      btn1Value: "[dalej]",
+      nextVid1: "rozmowazhanksemzabicieewerta",
+    },
+    rozmowazhanksemzabicieewerta: {
+      btn1Value: "TEST",
+      btn2Value: `"TEST"`,
+      nextVid1: "start",
+      nextVid2: "start",
     },
     szukanieinformatyka: {
       btn1Value: "Przyjmij zlecenie",
