@@ -13,7 +13,11 @@ function Button(props) {
           props.questionTime,
           props.relations,
           props.hanks,
-          props.kodnuklearny
+          props.kodnuklearny,
+          props.koddodrzwi,
+          props.ewertzyje,
+          props.pilot,
+          props.dysk
         )
       }
     >
@@ -38,13 +42,16 @@ function Video({ videos }) {
   if (typeof opt1req !== "undefined") {
     if (
       opt1req.expression == "==" &&
-      videos.relations["kodnuklearny"] != opt1req.value
+      videos.relations[opt1req.param] != opt1req.value
     ) {
       btn1value = "[zablokowane]";
     }
   }
   if (typeof opt2req !== "undefined") {
-    if (opt2req.expression == "<" && videos.relations.hanks >= opt2req.value) {
+    if (
+      opt2req.expression == "==" &&
+      videos.relations[opt2req.param] != opt2req.value
+    ) {
       btn2value = "[zablokowane]";
     }
   }
@@ -60,6 +67,10 @@ function Video({ videos }) {
       relations={videos.relations}
       hanks={videos[videos[videos.currentVideo].nextVid1].hanks}
       kodnuklearny={videos[videos[videos.currentVideo].nextVid1].kodnuklearny}
+      koddodrzwi={videos[videos[videos.currentVideo].nextVid1].koddodrzwi}
+      ewertzyje={videos[videos[videos.currentVideo].nextVid1].ewertzyje}
+      pilot={videos[videos[videos.currentVideo].nextVid1].pilot}
+      dysk={videos[videos[videos.currentVideo].nextVid1].dysk}
       btnValue={btn1value}
     />,
   ];
@@ -75,6 +86,10 @@ function Video({ videos }) {
         relations={videos.relations}
         hanks={videos[videos[videos.currentVideo].nextVid2].hanks}
         kodnuklearny={videos[videos[videos.currentVideo].nextVid2].kodnuklearny}
+        koddodrzwi={videos[videos[videos.currentVideo].nextVid2].koddodrzwi}
+        ewertzyje={videos[videos[videos.currentVideo].nextVid2].ewertzyje}
+        pilot={videos[videos[videos.currentVideo].nextVid2].pilot}
+        dysk={videos[videos[videos.currentVideo].nextVid2].dysk}
         btnValue={btn2value}
       />
     );
@@ -91,6 +106,10 @@ function Video({ videos }) {
         relations={videos.relations}
         hanks={videos[videos[videos.currentVideo].nextVid3].hanks}
         kodnuklearny={videos[videos[videos.currentVideo].nextVid3].kodnuklearny}
+        koddodrzwi={videos[videos[videos.currentVideo].nextVid3].koddodrzwi}
+        ewertzyje={videos[videos[videos.currentVideo].nextVid3].ewertzyje}
+        pilot={videos[videos[videos.currentVideo].nextVid3].pilot}
+        dysk={videos[videos[videos.currentVideo].nextVid3].dysk}
         btnValue={btn3value}
       />
     );
@@ -121,7 +140,11 @@ function handelBtn(
   questionTime,
   relations,
   hanks,
-  kodnuklearny
+  kodnuklearny,
+  koddodrzwi,
+  ewertzyje,
+  pilot,
+  dysk
 ) {
   console.log(hanks);
   console.log(kodnuklearny);
@@ -142,6 +165,31 @@ function handelBtn(
       kodnuklearny: kodnuklearny,
     });
   }
+  if (typeof koddodrzwi !== "undefined") {
+    setRelations({
+      ...relations,
+      koddodrzwi: koddodrzwi,
+    });
+  }
+  if (typeof ewertzyje !== "undefined") {
+    setRelations({
+      ...relations,
+      ewertzyje: ewertzyje,
+    });
+  }
+  if (typeof pilot !== "undefined") {
+    setRelations({
+      ...relations,
+      pilot: pilot,
+    });
+  }
+  if (typeof dysk !== "undefined") {
+    setRelations({
+      ...relations,
+      dysk: dysk,
+    });
+  }
+
   setTimeout(() => {
     // document.querySelector("#btn1").classList.remove("hide");
     // document.querySelector("#btn2").classList.remove("hide");
@@ -154,7 +202,10 @@ function App() {
   const [relations, setRelations] = useState({
     hanks: 0,
     kodnuklearny: 0,
-    isTrans: false,
+    koddodrzwi: 0,
+    ewertzyje: 1,
+    pilot: 0,
+    dysk: 1,
   });
 
   let videos = {
@@ -254,6 +305,77 @@ function App() {
     schowajpilota: {
       btn1Value: "dalej",
       nextVid1: "zabijaniewbazie",
+      pilot: 1,
+    },
+    zabijaniewbazie: {
+      btn1Value: "Wpisz kod",
+      opt1req: {
+        param: "koddodrzwi",
+        expression: "==",
+        value: 1,
+      },
+      btn2Value: "Idź dalej",
+      nextVid1: "otwarciedrzwikodem",
+      nextVid2: "ignorujeszdrzwinakod",
+    },
+    otwarciedrzwikodem: {
+      btn1Value: "[dalej]",
+      nextVid1: "walkazewertemwbazie",
+    },
+    ignorujeszdrzwinakod: {
+      btn1Value: "[dalej]",
+      nextVid1: "walkazewertemwbazie",
+    },
+    walkazewertemwbazie: {
+      btn1Value: "Zabij Williama",
+      btn2Value: "Oszczędź williama",
+      nextVid1: "zabijewertawbazie",
+      nextVid2: "wypuscewertawbazie",
+    },
+    zabijewertawbazie: {
+      btn1Value: "[Dalej]",
+      nextVid1: "ucieczkasamemu",
+      ewertzyje: 0,
+    },
+    wypuscewertawbazie: {
+      btn1Value: "[Dalej]",
+      nextVid1: "ucieczkasamemu",
+      ewertzyje: 1,
+    },
+    ucieczkasamemu: {
+      btn1Value: "idź do bazy",
+      opt1req: {
+        param: "pilot",
+        expression: "==",
+        value: 1,
+      },
+      btn2Value: "spotkaj się z hanksem",
+      opt2req: {
+        param: "pilot",
+        expression: "==",
+        value: 0,
+      },
+      nextVid1: "linuxend",
+      nextVid2: "rozmowazhanksem",
+    },
+    linuxend: {
+      btn1Value: "RIP Linuxiarz [*]",
+      nextVid1: "rozmowazhanksem",
+    },
+    rozmowazhanksem: {
+      btn1Value: "Daj dysk Hanksowi",
+      btn2Value: `"Przykro mi Hanks... nie mogę"`,
+      nextVid1: "walkazhanksemjeden",
+      nextVid2: "niszczydysk",
+    },
+    walkazhanksemjeden: {
+      btn1Value: "WALCZ!",
+      nextVid1: "walkazhanksem",
+    },
+    niszczydysk: {
+      btn1Value: "TEST",
+      nextVid1: "start",
+      dysk: 0,
     },
     naradawojskowa: {
       btn1Value: "Zabij dzieci w Afryce",
@@ -263,6 +385,7 @@ function App() {
     },
     niggersdie: {
       hanks: -1,
+      koddodrzwi: 1,
       btn1Value: "[dalej]",
       nextVid1: "treningsamemu",
     },
@@ -292,7 +415,12 @@ function App() {
     },
     treningzhanksem: {
       btn1Value: "[dalej]",
+      nextVid1: "bazazhanksem",
+    },
+    bazazhanksem: {
+      btn1Value: "[dalej]",
       nextVid1: "rozmowazhanksemzabicieewerta",
+      ewertzyje: 0,
     },
     rozmowazhanksemzabicieewerta: {
       btn1Value: "TEST",
