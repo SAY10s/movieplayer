@@ -38,7 +38,9 @@ function Video({ videos }) {
 
   let opt1req = videos[videos.currentVideo].opt1req;
   let opt2req = videos[videos.currentVideo].opt2req;
+  let opt3req = videos[videos.currentVideo].opt3req;
 
+  //opt1
   if (typeof opt1req !== "undefined") {
     if (
       opt1req.expression == "==" &&
@@ -46,13 +48,61 @@ function Video({ videos }) {
     ) {
       btn1value = "[zablokowane]";
     }
+    if (
+      opt1req.expression == ">" &&
+      videos.relations[opt1req.param] <= opt1req.value
+    ) {
+      btn1value = "[zablokowane]";
+    }
+    if (
+      opt1req.expression == "<" &&
+      videos.relations[opt1req.param] >= opt1req.value
+    ) {
+      btn1value = "[zablokowane]";
+    }
   }
+
+  //opt2
   if (typeof opt2req !== "undefined") {
     if (
       opt2req.expression == "==" &&
       videos.relations[opt2req.param] != opt2req.value
     ) {
       btn2value = "[zablokowane]";
+    }
+    if (
+      opt2req.expression == ">" &&
+      videos.relations[opt2req.param] <= opt2req.value
+    ) {
+      btn2value = "[zablokowane]";
+    }
+    if (
+      opt2req.expression == "<" &&
+      videos.relations[opt2req.param] >= opt2req.value
+    ) {
+      btn2value = "[zablokowane]";
+    }
+  }
+
+  //opt3
+  if (typeof opt3req !== "undefined") {
+    if (
+      opt3req.expression == "==" &&
+      videos.relations[opt3req.param] != opt3req.value
+    ) {
+      btn3value = "[zablokowane]";
+    }
+    if (
+      opt3req.expression == ">" &&
+      videos.relations[opt3req.param] <= opt3req.value
+    ) {
+      btn3value = "[zablokowane]";
+    }
+    if (
+      opt3req.expression == "<" &&
+      videos.relations[opt3req.param] >= opt3req.value
+    ) {
+      btn3value = "[zablokowane]";
     }
   }
 
@@ -153,6 +203,7 @@ function handelBtn(
   // document.querySelector("#btn2").classList.add("hide");
   // document.querySelector("#btn3").classList.add("hide");
   setCurrentVideo(nextVideo);
+  if (hanks == "undefined") hanks = 0;
   if (typeof hanks !== "undefined") {
     setRelations({
       ...relations,
@@ -169,6 +220,7 @@ function handelBtn(
     setRelations({
       ...relations,
       koddodrzwi: koddodrzwi,
+      hanks: relations.hanks + hanks,
     });
   }
   if (typeof ewertzyje !== "undefined") {
@@ -365,17 +417,102 @@ function App() {
     rozmowazhanksem: {
       btn1Value: "Daj dysk Hanksowi",
       btn2Value: `"Przykro mi Hanks... nie mogę"`,
-      nextVid1: "walkazhanksemjeden",
-      nextVid2: "niszczydysk",
+      nextVid1: "niszczydysk",
+      nextVid2: "walkazhanksemjeden",
     },
     walkazhanksemjeden: {
       btn1Value: "WALCZ!",
       nextVid1: "walkazhanksem",
     },
     niszczydysk: {
-      btn1Value: "TEST",
-      nextVid1: "start",
+      btn1Value: "[Kontunuuj][scena walki]",
+      opt1req: {
+        param: "hanks",
+        expression: "<",
+        value: 0,
+      },
+      btn2Value: "[Kontunuuj][niszczy i idzie solo]",
+      opt2req: {
+        param: "hanks",
+        expression: "==",
+        value: 0,
+      },
+      btn3Value: "[Kontunuuj][idziecie razem]",
+      opt3req: {
+        param: "hanks",
+        expression: ">",
+        value: 0,
+      },
+      nextVid1: "walkazhanksem",
+      nextVid2: "hanksidziesolo",
+      nextVid3: "idziesznagrzegorzazhanksem",
       dysk: 0,
+    },
+    walkazhanksem: {
+      btn1Value: "TEST1",
+      btn2Value: "TEST2",
+      nextVid1: "start",
+      nextVid2: "start",
+    },
+    hanksidziesolo: {
+      btn1Value: "[kontynuuj]",
+      nextVid1: "podejsciedogrzegorza",
+    },
+    podejsciedogrzegorza: {
+      btn1Value: "[Daj dysk Grzegorzowi]",
+      opt1req: {
+        param: "dysk",
+        expression: "==",
+        value: 1,
+      },
+      btn2Value: "Teraz wiem już o wszystkim... [nie dawaj dysku]",
+      nextVid1: "dajdyskgrzegorzowi",
+      nextVid2: "niedawajdysku",
+    },
+    dajdyskgrzegorzowi: {
+      btn1Value: "[end]",
+      nextVid1: "dajdyskgrzegorzowi",
+    },
+    niedawajdysku: {
+      btn1Value: "[Kontynuuj]",
+      opt1req: {
+        param: "ewertzyje",
+        expression: "==",
+        value: 0,
+      },
+      btn2Value: "[użyj pilota]",
+      opt2req: {
+        param: "pilot",
+        expression: "==",
+        value: 1,
+      },
+      btn3Value: "[Kontunuuj]",
+      opt3req: {
+        param: "ewertzyje",
+        expression: "==",
+        value: 1,
+      },
+      nextVid1: "poddajsie",
+      nextVid2: "bombagrzegorz",
+      nextVid3: "ewertzabijagrzegorza",
+    },
+    poddajsie: {
+      btn1Value: "[end]",
+      nextVid1: "poddajsie",
+    },
+    bombagrzegorz: {
+      btn1Value: "[end]",
+      nextVid1: "bombagrzegorz",
+    },
+    ewertzabijagrzegorza: {
+      btn1Value: "[end]",
+      nextVid1: "ewertzabijagrzegorza",
+    },
+    idziesznagrzegorzazhanksem: {
+      btn1Value: "TEST1",
+      btn2Value: "TEST2",
+      nextVid1: "start",
+      nextVid2: "start",
     },
     naradawojskowa: {
       btn1Value: "Zabij dzieci w Afryce",
@@ -423,10 +560,10 @@ function App() {
       ewertzyje: 0,
     },
     rozmowazhanksemzabicieewerta: {
-      btn1Value: "TEST",
-      btn2Value: `"TEST"`,
-      nextVid1: "start",
-      nextVid2: "start",
+      btn1Value: "Daj dysk Hanksowi",
+      btn2Value: `"Przykro mi Hanks... nie mogę"`,
+      nextVid1: "niszczydysk",
+      nextVid2: "walkazhanksemjeden",
     },
     szukanieinformatyka: {
       btn1Value: "Przyjmij zlecenie",
