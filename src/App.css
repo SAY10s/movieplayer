@@ -11,3 +11,7 @@ button {
 .hide {
   display: none;
 }
+.temp {
+  color: white;
+  font-size: 64px;
+}

@@ -1,33 +1,98 @@
 import "./App.css";
 import { useState } from "react";
 
+function Button(props) {
+  return (
+    <button
+      id={props.btnId}
+      onClick={() =>
+        handelBtn(
+          props.nextVid,
+          props.setCurrentVideo,
+          props.setRelations,
+          props.questionTime,
+          props.realtions,
+          props.hanks
+        )
+      }
+    >
+      {props.btnValue}
+    </button>
+  );
+}
+
 function Video({ videos }) {
   let btn1value = videos[videos.currentVideo].btn1Value;
   let btn2value = videos[videos.currentVideo].btn2Value;
+  let btn3value = videos[videos.currentVideo].btn3Value;
+  let btn4value = videos[videos.currentVideo].btn4Value;
+  console.log(`1: ${btn1value}`);
+  console.log(`2: ${btn2value}`);
+  console.log(`3: ${btn3value}`);
+  console.log(`4: ${btn4value}`);
 
   let opt1req = videos[videos.currentVideo].opt1req;
   let opt2req = videos[videos.currentVideo].opt2req;
 
   if (typeof opt1req !== "undefined") {
-    if (
-      opt1req.expression == "<" &&
-      videos.realtions.gayness >= opt1req.value
-    ) {
+    if (opt1req.expression == "<" && videos.realtions.hanks >= opt1req.value) {
       btn1value = "[zablokowane]";
     }
   }
 
   if (typeof opt2req !== "undefined") {
-    if (
-      opt2req.expression == "<" &&
-      videos.realtions.gayness >= opt2req.value
-    ) {
+    if (opt2req.expression == "<" && videos.realtions.hanks >= opt2req.value) {
       btn2value = "[zablokowane]";
     }
   }
+
+  let buttons = [
+    <Button
+      btnId="btn1"
+      key="btn1"
+      nextVid={videos[videos.currentVideo].nextVid1}
+      setCurrentVideo={videos.setCurrentVideo}
+      setRelations={videos.setRelations}
+      questionTime={videos[videos[videos.currentVideo].nextVid1].questionTime}
+      relations={videos.realtions}
+      hanks={videos[videos[videos.currentVideo].nextVid1].hanks}
+      btnValue={btn1value}
+    />,
+  ];
+  if (typeof btn2value !== "undefined") {
+    buttons[1] = (
+      <Button
+        key="btn2"
+        btnId="btn2"
+        nextVid={videos[videos.currentVideo].nextVid2}
+        setCurrentVideo={videos.setCurrentVideo}
+        setRelations={videos.setRelations}
+        questionTime={videos[videos[videos.currentVideo].nextVid2].questionTime}
+        relations={videos.realtions}
+        hanks={videos[videos[videos.currentVideo].nextVid2].hanks}
+        btnValue={btn2value}
+      />
+    );
+  }
+  if (typeof btn3value !== "undefined") {
+    buttons[2] = (
+      <Button
+        btnId="btn3"
+        key="btn3"
+        nextVid={videos[videos.currentVideo].nextVid3}
+        setCurrentVideo={videos.setCurrentVideo}
+        setRelations={videos.setRelations}
+        questionTime={videos[videos[videos.currentVideo].nextVid3].questionTime}
+        relations={videos.realtions}
+        hanks={videos[videos[videos.currentVideo].nextVid3].hanks}
+        btnValue={btn3value}
+      />
+    );
+  }
+
   return (
     <div>
-      <video
+      {/* <video
         src={`./Videos/${videos.currentVideo}.mp4`}
         width="1280"
         height="720"
@@ -36,38 +101,10 @@ function Video({ videos }) {
         controls
         autoPlay
         // muted
-      ></video>
+      ></video> */}
+      <div className="temp">{videos.currentVideo}</div>
       <br></br>
-      <button
-        id="btn1"
-        onClick={() =>
-          handelBtn(
-            videos[videos.currentVideo].nextVid1,
-            videos.setCurrentVideo,
-            videos.setRelations,
-            videos[videos[videos.currentVideo].nextVid1].questionTime,
-            videos.realtions,
-            videos[videos[videos.currentVideo].nextVid1].gayness
-          )
-        }
-      >
-        {btn1value}
-      </button>
-      <button
-        id="btn2"
-        onClick={() =>
-          handelBtn(
-            videos[videos.currentVideo].nextVid2,
-            videos.setCurrentVideo,
-            videos.setRelations,
-            videos[videos[videos.currentVideo].nextVid2].questionTime,
-            videos.realtions,
-            videos[videos[videos.currentVideo].nextVid2].gayness
-          )
-        }
-      >
-        {btn2value}
-      </button>
+      {buttons}
     </div>
   );
 }
@@ -77,30 +114,32 @@ function handelBtn(
   setRelations,
   questionTime,
   relations,
-  gayness
+  hanks
 ) {
   if (typeof questionTime == "undefined") questionTime = 500;
-  document.querySelector("#btn1").classList.add("hide");
-  document.querySelector("#btn2").classList.add("hide");
+  // document.querySelector("#btn1").classList.add("hide");
+  // document.querySelector("#btn2").classList.add("hide");
+  // document.querySelector("#btn3").classList.add("hide");
   setCurrentVideo(nextVideo);
-  console.log(gayness);
+  console.log(hanks);
   console.log(relations);
-  if (typeof gayness !== "undefined") {
+  if (typeof hanks !== "undefined") {
     setRelations({
       ...relations,
-      gayness: relations.gayness + gayness,
+      hanks: relations.hanks + hanks,
     });
   }
   setTimeout(() => {
-    document.querySelector("#btn1").classList.remove("hide");
-    document.querySelector("#btn2").classList.remove("hide");
+    // document.querySelector("#btn1").classList.remove("hide");
+    // document.querySelector("#btn2").classList.remove("hide");
+    // document.querySelector("#btn3").classList.remove("hide");
   }, questionTime);
 }
 
 function App() {
   const [currentVideo, setCurrentVideo] = useState("start");
   const [realtions, setRelations] = useState({
-    gayness: 0,
+    hanks: 0,
     masculinity: 0,
     isTrans: false,
   });
@@ -111,74 +150,42 @@ function App() {
     setCurrentVideo: setCurrentVideo,
     setRelations: setRelations,
     start: {
-      btn1Value: "Chłop",
-      btn2Value: "Baba",
-      nextVid1: "boy",
-      nextVid2: "girl",
+      btn1Value: "Przyjmij zlecenie",
+      btn2Value: "Odrzuć zlecenie",
+      nextVid1: "poznaniehanksa",
+      nextVid2: "grzegorzkill",
     },
-    boy: {
-      btn1Value: "Gay",
-      btn2Value: "Hetero",
-      // questionTime: 5000,
-      nextVid1: "gayboy",
-      nextVid2: "heteroboy",
+    grzegorzkill: {
+      btn1Value: "[Koniec]",
+      btn2Value: "[Koniec]",
+      nextVid1: "grzegorzkill",
+      nextVid2: "grzegorzkill",
     },
-    girl: {
-      btn1Value: "Lesba",
-      btn2Value: "Hetero",
-      nextVid1: "lesbiangirl",
-      nextVid2: "heterogirl",
+    poznaniehanksa: {
+      btn1Value: "Napij się z nim",
+      btn2Value: "*poczekaj*",
+      btn3Value: `"Tobie już wystarczy!`,
+      nextVid1: "pijecie",
+      nextVid2: "pijjaczekam",
+      nextVid3: "lapszafraki",
     },
-    gayboy: {
-      btn1Value: "Dożyj starości (dalej)",
-      btn2Value: "Umrzyj tak o (dalej)",
-      gayness: 1,
-      // questionTime: 8000,
-      nextVid1: "dead",
-      nextVid2: "dead",
+    pijecie: {
+      btn1Value: "Dalej",
+      btn2Value: "Dalej",
+      nextVid1: "pijecie",
+      nextVid2: "pijjaczekam",
     },
-    heteroboy: {
-      btn1Value: "Dożyj starości (dalej)",
-      btn2Value: "Umrzyj tak o (dalej)",
-      // questionTime: 10000,
-      nextVid1: "dead",
-      nextVid2: "dead",
+    pijjaczekam: {
+      btn1Value: "Dalej",
+      btn2Value: "Dalej",
+      nextVid1: "pijecie",
+      nextVid2: "pijjaczekam",
     },
-    dead: {
-      btn1Value: "Idź do nieba",
-      opt1req: {
-        param: "gayness",
-        expression: "<",
-        value: 1,
-      },
-      btn2Value: "Idź do piekła",
-      nextVid1: "heaven",
-      nextVid2: "hell",
-    },
-    heaven: {
-      btn1Value: "END",
-      btn2Value: "END",
-      nextVid1: "heaven",
-      nextVid2: "heaven",
-    },
-    hell: {
-      btn1Value: "END",
-      btn2Value: "END",
-      nextVid1: "hell",
-      nextVid2: "hell",
-    },
-    lesbiangirl: {
-      btn1Value: "Dożyj starości (dalej)",
-      btn2Value: "Umrzyj tak o (dalej)",
-      gayness: 1,
-      nextVid1: "dead",
-      nextVid2: "dead",
-    },
-    heterogirl: {
-      btn1Value: "Dożyj starości (dalej)",
-      btn2Value: "Umrzyj tak o (dalej)",
-      nextVid1: "dead",
-      nextVid2: "dead",
+    lapszafraki: {
+      btn1Value: "Dalej",
+      btn2Value: "Dalej",
+      nextVid1: "pijecie",
+      nextVid2: "pijjaczekam",
     },
   };
   return (
