@@ -11,8 +11,9 @@ function Button(props) {
           props.setCurrentVideo,
           props.setRelations,
           props.questionTime,
-          props.realtions,
-          props.hanks
+          props.relations,
+          props.hanks,
+          props.kodnuklearny
         )
       }
     >
@@ -35,13 +36,13 @@ function Video({ videos }) {
   let opt2req = videos[videos.currentVideo].opt2req;
 
   if (typeof opt1req !== "undefined") {
-    if (opt1req.expression == "<" && videos.realtions.hanks >= opt1req.value) {
+    if (opt1req.expression == "<" && videos.relations.hanks >= opt1req.value) {
       btn1value = "[zablokowane]";
     }
   }
 
   if (typeof opt2req !== "undefined") {
-    if (opt2req.expression == "<" && videos.realtions.hanks >= opt2req.value) {
+    if (opt2req.expression == "<" && videos.relations.hanks >= opt2req.value) {
       btn2value = "[zablokowane]";
     }
   }
@@ -54,8 +55,9 @@ function Video({ videos }) {
       setCurrentVideo={videos.setCurrentVideo}
       setRelations={videos.setRelations}
       questionTime={videos[videos[videos.currentVideo].nextVid1].questionTime}
-      relations={videos.realtions}
+      relations={videos.relations}
       hanks={videos[videos[videos.currentVideo].nextVid1].hanks}
+      kodnuklearny={videos[videos[videos.currentVideo].nextVid1].kodnuklearny}
       btnValue={btn1value}
     />,
   ];
@@ -68,8 +70,9 @@ function Video({ videos }) {
         setCurrentVideo={videos.setCurrentVideo}
         setRelations={videos.setRelations}
         questionTime={videos[videos[videos.currentVideo].nextVid2].questionTime}
-        relations={videos.realtions}
+        relations={videos.relations}
         hanks={videos[videos[videos.currentVideo].nextVid2].hanks}
+        kodnuklearny={videos[videos[videos.currentVideo].nextVid2].kodnuklearny}
         btnValue={btn2value}
       />
     );
@@ -83,8 +86,9 @@ function Video({ videos }) {
         setCurrentVideo={videos.setCurrentVideo}
         setRelations={videos.setRelations}
         questionTime={videos[videos[videos.currentVideo].nextVid3].questionTime}
-        relations={videos.realtions}
+        relations={videos.relations}
         hanks={videos[videos[videos.currentVideo].nextVid3].hanks}
+        kodnuklearny={videos[videos[videos.currentVideo].nextVid3].kodnuklearny}
         btnValue={btn3value}
       />
     );
@@ -114,19 +118,26 @@ function handelBtn(
   setRelations,
   questionTime,
   relations,
-  hanks
+  hanks,
+  kodnuklearny
 ) {
+  console.log(hanks);
+  console.log(kodnuklearny);
   if (typeof questionTime == "undefined") questionTime = 500;
   // document.querySelector("#btn1").classList.add("hide");
   // document.querySelector("#btn2").classList.add("hide");
   // document.querySelector("#btn3").classList.add("hide");
   setCurrentVideo(nextVideo);
-  console.log(hanks);
-  console.log(relations);
   if (typeof hanks !== "undefined") {
     setRelations({
       ...relations,
       hanks: relations.hanks + hanks,
+    });
+  }
+  if (typeof kodnuklearny !== "undefined") {
+    setRelations({
+      ...relations,
+      kodnuklearny: kodnuklearny,
     });
   }
   setTimeout(() => {
@@ -138,15 +149,15 @@ function handelBtn(
 
 function App() {
   const [currentVideo, setCurrentVideo] = useState("start");
-  const [realtions, setRelations] = useState({
+  const [relations, setRelations] = useState({
     hanks: 0,
-    masculinity: 0,
+    kodnuklearny: 0,
     isTrans: false,
   });
 
   let videos = {
     currentVideo: currentVideo,
-    realtions: realtions,
+    relations: relations,
     setCurrentVideo: setCurrentVideo,
     setRelations: setRelations,
     start: {
@@ -170,22 +181,64 @@ function App() {
       nextVid3: "lapszafraki",
     },
     pijecie: {
-      btn1Value: "Dalej",
-      btn2Value: "Dalej",
-      nextVid1: "pijecie",
-      nextVid2: "pijjaczekam",
+      btn1Value: "[Dalej]",
+      nextVid1: "naradawbazie",
+      hanks: 1,
     },
     pijjaczekam: {
-      btn1Value: "Dalej",
-      btn2Value: "Dalej",
-      nextVid1: "pijecie",
-      nextVid2: "pijjaczekam",
+      btn1Value: "[Dalej]",
+      nextVid1: "naradawbazie",
+      hanks: 0,
     },
     lapszafraki: {
-      btn1Value: "Dalej",
-      btn2Value: "Dalej",
-      nextVid1: "pijecie",
-      nextVid2: "pijjaczekam",
+      btn1Value: "[Dalej]",
+      nextVid1: "naradawbazie",
+      hanks: -1,
+    },
+    naradawbazie: {
+      btn1Value: "Idź z Hackerem",
+      btn2Value: "Idź z Hanksem",
+      btn3Value: `Idź z Williamem`,
+      nextVid1: "linux",
+      nextVid2: "naradawojskowa",
+      nextVid3: "szukanieinformatyka",
+    },
+    linux: {
+      btn1Value: "Bezpieczne hackowanie",
+      btn2Value: "Niebezpieczne hackowanie",
+      nextVid1: "bezpiecznehackowanie",
+      nextVid2: "niebezpiecznehackowanie",
+    },
+    bezpiecznehackowanie: {
+      btn1Value: "[Dalej]",
+      nextVid1: "treningsamemu",
+    },
+    niebezpiecznehackowanie: {
+      btn1Value: "[Dalej]",
+      nextVid1: "treningsamemu",
+      kodnuklearny: 1,
+    },
+    treningsamemu: {
+      btn1Value: "[Dalej]",
+      nextVid1: "wejsciedobazysamemu",
+    },
+    wejsciedobazysamemu: {
+      btn1Value: "Wpisz kod i wejdź",
+      btn2Value: "Idź dalej",
+      nextVid1: "zdobyciepilota",
+      nextVid2: "ignorujeszdrzwiodbomby",
+    },
+    naradawojskowa: {
+      btn1Value: "Przyjmij zlecenie",
+      btn2Value: "Odrzuć zlecenie",
+      nextVid1: "poznaniehanksa",
+      nextVid2: "grzegorzkill",
+    },
+    szukanieinformatyka: {
+      btn1Value: "Przyjmij zlecenie",
+      btn2Value: "Odrzuć zlecenie",
+      nextVid1: "poznaniehanksa",
+      nextVid2: "grzegorzkill",
     },
   };
   return (
