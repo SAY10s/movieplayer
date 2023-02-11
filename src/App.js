@@ -7,32 +7,40 @@ import Samouczek from "./Samouczek";
 import Osiagniecia from "./Osiagniecia";
 
 function Button(props) {
-  return (
-    <button
-      className="button"
-      id={props.btnId}
-      onClick={() =>
-        handelBtn(
-          props.nextVid,
-          props.setCurrentVideo,
-          props.setRelations,
-          props.questionTime,
-          props.relations,
-          props.hanks,
-          props.kodnuklearny,
-          props.koddodrzwi,
-          props.ewertzyje,
-          props.pilot,
-          props.dysk,
-          props.zwlokiewerta,
-          props.hanksprzezyje,
-          props.ewert
-        )
-      }
-    >
-      {props.btnValue}
-    </button>
-  );
+  if (props.btnValue == "[zablokowane]")
+    return (
+      <button className="button disabled" id={props.btnId}>
+        {props.btnValue}
+      </button>
+    );
+  else {
+    return (
+      <button
+        className="button"
+        id={props.btnId}
+        onClick={() =>
+          handelBtn(
+            props.nextVid,
+            props.setCurrentVideo,
+            props.setRelations,
+            props.questionTime,
+            props.relations,
+            props.hanks,
+            props.kodnuklearny,
+            props.koddodrzwi,
+            props.ewertzyje,
+            props.pilot,
+            props.dysk,
+            props.zwlokiewerta,
+            props.hanksprzezyje,
+            props.ewert
+          )
+        }
+      >
+        {props.btnValue}
+      </button>
+    );
+  }
 }
 // <div className="button-wrapper">
 //   <div className="left">
@@ -279,7 +287,7 @@ function Video({ videos }) {
       <div className="graj">
         <video
           src={`./Videos/${videos.currentVideo}.mp4`}
-          width="80%"
+          width="75%"
           // height="720"
           type="video/mp4"
           id="film"
@@ -407,9 +415,7 @@ function App() {
       nextVid2: "grzegorzkill",
     },
     grzegorzkill: {
-      btn1Value: "[Koniec]",
-      btn2Value: "[Koniec]",
-      nextVid1: "grzegorzkill",
+      btn1Value: "[END]",
       nextVid2: "grzegorzkill",
     },
     poznaniehanksa: {
@@ -484,10 +490,8 @@ function App() {
       nextVid2: "schowajpilota",
     },
     bombaatomowa: {
-      btn1Value: "[end]",
-      btn2Value: "[end]",
+      btn1Value: "[END]",
       nextVid1: "start",
-      nextVid2: "start",
     },
     schowajpilota: {
       btn1Value: "kontunuuj",
@@ -600,7 +604,7 @@ function App() {
       nextVid2: "wygrywaszzhanksem",
     },
     hanksciezabija: {
-      btn1Value: "[end]",
+      btn1Value: "[END]",
       nextVid1: "hanksciezabija",
     },
     wygrywaszzhanksem: {
@@ -650,7 +654,7 @@ function App() {
       nextVid1: "hankssolopowypuszczeniu",
     },
     hankssolopowypuszczeniu: {
-      btn1Value: "[end]",
+      btn1Value: "[END]",
       nextVid1: "hankssolopowypuszczeniu",
     },
     hanksidziesolo: {
@@ -669,7 +673,7 @@ function App() {
       nextVid2: "niedawajdysku",
     },
     dajdyskgrzegorzowi: {
-      btn1Value: "[end]",
+      btn1Value: "[END]",
       nextVid1: "dajdyskgrzegorzowi",
     },
     niedawajdysku: {
@@ -696,15 +700,15 @@ function App() {
       nextVid3: "ewertzabijagrzegorza",
     },
     poddajsie: {
-      btn1Value: "[end]",
+      btn1Value: "[END]",
       nextVid1: "poddajsie",
     },
     bombagrzegorz: {
-      btn1Value: "[end]",
+      btn1Value: "[END]",
       nextVid1: "bombagrzegorz",
     },
     ewertzabijagrzegorza: {
-      btn1Value: "[end]",
+      btn1Value: "[END]",
       nextVid1: "ewertzabijagrzegorza",
     },
     idziesznagrzegorzazhanksem: {
@@ -904,15 +908,15 @@ function App() {
       nextVid3: "goodewert",
     },
     badewert: {
-      btn1Value: "[end]",
+      btn1Value: "[END]",
       nextVid1: "badewert",
     },
     neutralewert: {
-      btn1Value: "[end]",
+      btn1Value: "[END]",
       nextVid1: "neutralewert",
     },
     goodewert: {
-      btn1Value: "[end]",
+      btn1Value: "[END]",
       nextVid1: "goodewert",
     },
   };
