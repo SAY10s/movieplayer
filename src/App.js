@@ -412,7 +412,7 @@ function App() {
     },
     grzegorzkill: {
       btn1Value: "[END]",
-      nextVid2: "grzegorzkill",
+      nextVid1: "grzegorzkill",
     },
     poznaniehanksa: {
       btn1Value: "Napij się z nim",
@@ -540,8 +540,20 @@ function App() {
       nextVid2: "walkazhanksemjeden",
     },
     walkazhanksemjeden: {
-      btn1Value: "WALCZ!",
-      nextVid1: "walkazhanksem",
+      btn1Value: "[kontynuuj]",
+      opt1req: {
+        param: "hanks",
+        expression: "<",
+        value: -1,
+      },
+      btn2Value: "[kontynuuj]",
+      opt2req: {
+        param: "hanks",
+        expression: ">",
+        value: -2,
+      },
+      nextVid1: "hanksciezabija",
+      nextVid2: "wygrywaszzhanksem",
     },
     niszczydysk: {
       btn1Value: "[Kontunuuj]",
