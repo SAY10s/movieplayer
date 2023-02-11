@@ -3,10 +3,10 @@ const Tabs = () => {
   return (
     <div className="tabs">
       <NavLink
-        to="/samouczek"
+        to="/odbierzprezent"
         className={({ isActive }) => (isActive ? "activeNav" : "inactiveNav")}
       >
-        <div>SAMOUCZEK</div>
+        <div>ODBIERZ PREZENT</div>
       </NavLink>
       <NavLink
         to="/graj"

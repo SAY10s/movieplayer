@@ -530,23 +530,7 @@ function App() {
       ewertzyje: 1,
     },
     ucieczkasamemu: {
-      btn1Value: "idź do bazy",
-      opt1req: {
-        param: "pilot",
-        expression: "==",
-        value: 1,
-      },
-      btn2Value: "spotkaj się z hanksem",
-      opt2req: {
-        param: "pilot",
-        expression: "==",
-        value: 0,
-      },
-      nextVid1: "linuxend",
-      nextVid2: "rozmowazhanksem",
-    },
-    linuxend: {
-      btn1Value: "RIP Linuxiarz [*]",
+      btn1Value: "Spotkaj się z hanksem",
       nextVid1: "rozmowazhanksem",
     },
     rozmowazhanksem: {
@@ -560,19 +544,19 @@ function App() {
       nextVid1: "walkazhanksem",
     },
     niszczydysk: {
-      btn1Value: "[Kontunuuj][scena walki]",
+      btn1Value: "[Kontunuuj]",
       opt1req: {
         param: "hanks",
         expression: "<",
         value: 0,
       },
-      btn2Value: "[Kontunuuj][niszczy i idzie solo]",
+      btn2Value: "[Kontunuuj]",
       opt2req: {
         param: "hanks",
         expression: "==",
         value: 0,
       },
-      btn3Value: "[Kontunuuj][idziecie razem]",
+      btn3Value: "[Kontunuuj]",
       opt3req: {
         param: "hanks",
         expression: ">",
@@ -921,7 +905,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/graj" element={<Video videos={videos} />} />
-        <Route path="/samouczek" element={<Samouczek />} />
+        <Route path="/odbierzprezent" element={<Samouczek />} />
         <Route path="/osiagniecia" element={<Osiagniecia />} />
       </Routes>
     </Router>
