@@ -15,10 +15,10 @@ const Tabs = () => {
         <div>GRAJ</div>
       </NavLink>
       <NavLink
-        to="/osiagniecia"
+        to="/ogrze"
         className={({ isActive }) => (isActive ? "activeNav" : "inactiveNav")}
       >
-        <div>OSIĄGNIĘCIA</div>
+        <div>O grze</div>
       </NavLink>
     </div>
   );

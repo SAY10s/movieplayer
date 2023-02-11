@@ -906,7 +906,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/graj" element={<Video videos={videos} />} />
         <Route path="/odbierzprezent" element={<Samouczek />} />
-        <Route path="/osiagniecia" element={<Osiagniecia />} />
+        <Route path="/ogrze" element={<Osiagniecia />} />
       </Routes>
     </Router>
   );

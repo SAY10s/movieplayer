@@ -6,27 +6,13 @@ const LandingPage = () => {
 
   return (
     <div className="landingpage">
-      <div>Witaj w "Tytuł gry"!</div>
       <div
+        className="title"
         onClick={() => {
           navigate("/odbierzprezent");
         }}
       >
-        Odbierz prezent
-      </div>
-      <div
-        onClick={() => {
-          navigate("/graj");
-        }}
-      >
-        Graj
-      </div>
-      <div
-        onClick={() => {
-          navigate("/osiagniecia");
-        }}
-      >
-        Osiągnięcia
+        Odbierz prezent!
       </div>
     </div>
   );
