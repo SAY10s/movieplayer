@@ -297,7 +297,9 @@ function Video({ videos }) {
         ></video>
         {/* <div className="temp">{videos.currentVideo}</div> */}
         <br></br>
-        <div className="buttons-wrapper">{buttons}</div>
+        <div className="buttons-wrapper" id="buttonswrapper">
+          {buttons}
+        </div>
       </div>
     </>
   );
@@ -318,12 +320,8 @@ function handelBtn(
   hanksprzezyje,
   ewert
 ) {
-  console.log(hanks);
-  console.log(kodnuklearny);
-  if (typeof questionTime == "undefined") questionTime = 500;
-  // document.querySelector("#btn1").classList.add("hide");
-  // document.querySelector("#btn2").classList.add("hide");
-  // document.querySelector("#btn3").classList.add("hide");
+  if (typeof questionTime == "undefined") questionTime = 0;
+  document.querySelector("#buttonswrapper").classList.add("hide");
   setCurrentVideo(nextVideo);
   if (hanks == "undefined") hanks = 0;
   if (typeof hanks !== "undefined") {
@@ -383,10 +381,8 @@ function handelBtn(
   }
 
   setTimeout(() => {
-    // document.querySelector("#btn1").classList.remove("hide");
-    // document.querySelector("#btn2").classList.remove("hide");
-    // document.querySelector("#btn3").classList.remove("hide");
-  }, questionTime);
+    document.querySelector("#buttonswrapper").classList.remove("hide");
+  }, questionTime * 1000);
 }
 
 function App() {

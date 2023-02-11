@@ -17,9 +17,6 @@ button {
   font-size: 32px;
 }
 
-.hide {
-  display: none;
-}
 .temp {
   font-size: 64px;
 }
@@ -90,4 +87,8 @@ video {
 }
 .disabled:hover {
   background-color: #000000c8;
+}
+
+.hide {
+  display: none;
 }
