@@ -1,9 +1,15 @@
 import "./App.css";
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./LandingPage";
+import Tabs from "./Tabs";
+import Samouczek from "./Samouczek";
+import Osiagniecia from "./Osiagniecia";
 
 function Button(props) {
   return (
     <button
+      className="button"
       id={props.btnId}
       onClick={() =>
         handelBtn(
@@ -28,6 +34,45 @@ function Button(props) {
     </button>
   );
 }
+// <div className="button-wrapper">
+//   <div className="left">
+//     <div className="d1" />
+//     <div className="d2" />
+//     <div className="d3" />
+//     <div className="d4" />
+//     <button
+//       className="button"
+//       id={props.btnId}
+//       onClick={() =>
+//         handelBtn(
+//           props.nextVid,
+//           props.setCurrentVideo,
+//           props.setRelations,
+//           props.questionTime,
+//           props.relations,
+//           props.hanks,
+//           props.kodnuklearny,
+//           props.koddodrzwi,
+//           props.ewertzyje,
+//           props.pilot,
+//           props.dysk,
+//           props.zwlokiewerta,
+//           props.hanksprzezyje,
+//           props.ewert
+//         )
+//       }
+//     >
+//       {props.btnValue}
+//     </button>
+//   </div>
+//   <div className="right">
+//     <div className="d5" />
+//     <div className="d6" />
+//     <div className="d7" />
+//     <div className="d8" />
+//     <div>1</div>
+//   </div>
+// </div>
 
 function Video({ videos }) {
   let btn1value = videos[videos.currentVideo].btn1Value;
@@ -229,21 +274,24 @@ function Video({ videos }) {
   }
 
   return (
-    <div>
-      {/* <video
-        src={`./Videos/${videos.currentVideo}.mp4`}
-        width="1280"
-        height="720"
-        type="video/mp4"
-        id="film"
-        controls
-        autoPlay
-        // muted
-      ></video> */}
-      <div className="temp">{videos.currentVideo}</div>
-      <br></br>
-      {buttons}
-    </div>
+    <>
+      <Tabs />
+      <div className="graj">
+        <video
+          src={`./Videos/${videos.currentVideo}.mp4`}
+          width="80%"
+          // height="720"
+          type="video/mp4"
+          id="film"
+          // controls
+          autoPlay
+          // muted
+        ></video>
+        {/* <div className="temp">{videos.currentVideo}</div> */}
+        <br></br>
+        <div className="buttons-wrapper">{buttons}</div>
+      </div>
+    </>
   );
 }
 function handelBtn(
@@ -373,17 +421,17 @@ function App() {
       nextVid3: "lapszafraki",
     },
     pijecie: {
-      btn1Value: "[Dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "naradawbazie",
       hanks: 1,
     },
     pijjaczekam: {
-      btn1Value: "[Dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "naradawbazie",
       hanks: 0,
     },
     lapszafraki: {
-      btn1Value: "[Dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "naradawbazie",
       hanks: -1,
     },
@@ -402,16 +450,16 @@ function App() {
       nextVid2: "niebezpiecznehackowanie",
     },
     bezpiecznehackowanie: {
-      btn1Value: "[Dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "treningsamemu",
     },
     niebezpiecznehackowanie: {
-      btn1Value: "[Dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "treningsamemu",
       kodnuklearny: 1,
     },
     treningsamemu: {
-      btn1Value: "[Dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "wejsciedobazysamemu",
     },
     wejsciedobazysamemu: {
@@ -426,7 +474,7 @@ function App() {
       nextVid2: "ignorujeszdrzwiodbomby",
     },
     ignorujeszdrzwiodbomby: {
-      btn1Value: "dalej",
+      btn1Value: "kontunuuj",
       nextVid1: "zabijaniewbazie",
     },
     zdobyciepilota: {
@@ -442,7 +490,7 @@ function App() {
       nextVid2: "start",
     },
     schowajpilota: {
-      btn1Value: "dalej",
+      btn1Value: "kontunuuj",
       nextVid1: "zabijaniewbazie",
       pilot: 1,
     },
@@ -458,11 +506,11 @@ function App() {
       nextVid2: "ignorujeszdrzwinakod",
     },
     otwarciedrzwikodem: {
-      btn1Value: "[dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "walkazewertemwbazie",
     },
     ignorujeszdrzwinakod: {
-      btn1Value: "[dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "walkazewertemwbazie",
     },
     walkazewertemwbazie: {
@@ -472,12 +520,12 @@ function App() {
       nextVid2: "wypuscewertawbazie",
     },
     zabijewertawbazie: {
-      btn1Value: "[Dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "ucieczkasamemu",
       ewertzyje: 0,
     },
     wypuscewertawbazie: {
-      btn1Value: "[Dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "ucieczkasamemu",
       ewertzyje: 1,
     },
@@ -552,7 +600,7 @@ function App() {
       nextVid2: "wygrywaszzhanksem",
     },
     hanksciezabija: {
-      btn1Value: "[kontynuuj]",
+      btn1Value: "[end]",
       nextVid1: "hanksciezabija",
     },
     wygrywaszzhanksem: {
@@ -682,12 +730,12 @@ function App() {
       nextVid2: "wodka",
     },
     papierosnica: {
-      btn1Value: "[dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "walkazgrzegorzemrazemzhanksem",
       hanksprzezyje: 2,
     },
     wodka: {
-      btn1Value: "[dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "walkazgrzegorzemrazemzhanksem",
       hanksprzezyje: 1,
     },
@@ -715,15 +763,15 @@ function App() {
       nextVid3: "hankszyje",
     },
     hanksumiera: {
-      btn1Value: "[dalej]",
+      btn1Value: "[END]",
       nextVid1: "hanksumiera",
     },
     hanksumierazwodka: {
-      btn1Value: "[dalej]",
+      btn1Value: "[END]",
       nextVid1: "hanksumierazwodka",
     },
     hankszyje: {
-      btn1Value: "[dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "hankszyje",
     },
     naradawojskowa: {
@@ -735,7 +783,7 @@ function App() {
     niggersdie: {
       hanks: -1,
       koddodrzwi: 1,
-      btn1Value: "[dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "treningsamemu",
     },
     niggerslive: {
@@ -749,25 +797,25 @@ function App() {
     },
     walsiehanks: {
       hanks: -1,
-      btn1Value: "[dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "treningzhanksem",
     },
     sluchamhanksa: {
       hanks: 0,
-      btn1Value: "[dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "treningzhanksem",
     },
     sluchamzzainteresowaniem: {
       hanks: 1,
-      btn1Value: "[dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "treningzhanksem",
     },
     treningzhanksem: {
-      btn1Value: "[dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "bazazhanksem",
     },
     bazazhanksem: {
-      btn1Value: "[dalej]",
+      btn1Value: "[kontunuuj]",
       nextVid1: "rozmowazhanksemzabicieewerta",
       ewertzyje: 0,
     },
@@ -869,9 +917,14 @@ function App() {
     },
   };
   return (
-    <div className="App">
-      <Video videos={videos} />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/graj" element={<Video videos={videos} />} />
+        <Route path="/samouczek" element={<Samouczek />} />
+        <Route path="/osiagniecia" element={<Osiagniecia />} />
+      </Routes>
+    </Router>
   );
 }
 
