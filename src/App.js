@@ -724,19 +724,19 @@ function App() {
       hanksprzezyje: 1,
     },
     walkazgrzegorzemrazemzhanksem: {
-      btn1Value: "[Walcz]",
+      btn1Value: "[Kontunuuj]",
       opt1req: {
         param: "hanksprzezyje",
         expression: "==",
         value: 0,
       },
-      btn2Value: "[Walcz]",
+      btn2Value: "[Kontunuuj]",
       opt2req: {
         param: "hanksprzezyje",
         expression: "==",
         value: 1,
       },
-      btn3Value: "[Walcz]",
+      btn3Value: "[Kontunuuj]",
       opt3req: {
         param: "hanksprzezyje",
         expression: "==",
@@ -804,10 +804,8 @@ function App() {
       ewertzyje: 0,
     },
     rozmowazhanksemzabicieewerta: {
-      btn1Value: "Daj dysk Hanksowi",
-      btn2Value: `"Przykro mi Hanks... nie mogę"`,
-      nextVid1: "niszczydysk",
-      nextVid2: "walkazhanksemjeden",
+      btn1Value: "[kontunuuj]",
+      nextVid1: "rozmowazhanksem",
       zwlokiewerta: 1,
     },
     szukanieinformatyka: {
