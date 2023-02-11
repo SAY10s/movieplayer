@@ -19,7 +19,8 @@ function Button(props) {
           props.pilot,
           props.dysk,
           props.zwlokiewerta,
-          props.hanksprzezyje
+          props.hanksprzezyje,
+          props.ewert
         )
       }
     >
@@ -147,6 +148,7 @@ function Video({ videos }) {
       dysk={videos[videos[videos.currentVideo].nextVid1].dysk}
       zwlokiewerta={videos[videos[videos.currentVideo].nextVid1].zwlokiewerta}
       hanksprzezyje={videos[videos[videos.currentVideo].nextVid1].hanksprzezyje}
+      ewert={videos[videos[videos.currentVideo].nextVid1].ewert}
       btnValue={btn1value}
     />,
   ];
@@ -170,6 +172,7 @@ function Video({ videos }) {
         hanksprzezyje={
           videos[videos[videos.currentVideo].nextVid2].hanksprzezyje
         }
+        ewert={videos[videos[videos.currentVideo].nextVid2].ewert}
         btnValue={btn2value}
       />
     );
@@ -194,6 +197,7 @@ function Video({ videos }) {
         hanksprzezyje={
           videos[videos[videos.currentVideo].nextVid3].hanksprzezyje
         }
+        ewert={videos[videos[videos.currentVideo].nextVid3].ewert}
         btnValue={btn3value}
       />
     );
@@ -218,6 +222,7 @@ function Video({ videos }) {
         hanksprzezyje={
           videos[videos[videos.currentVideo].nextVid4].hanksprzezyje
         }
+        ewert={videos[videos[videos.currentVideo].nextVid4].ewert}
         btnValue={btn4value}
       />
     );
@@ -254,7 +259,8 @@ function handelBtn(
   pilot,
   dysk,
   zwlokiewerta,
-  hanksprzezyje
+  hanksprzezyje,
+  ewert
 ) {
   console.log(hanks);
   console.log(kodnuklearny);
@@ -268,6 +274,12 @@ function handelBtn(
     setRelations({
       ...relations,
       hanks: relations.hanks + hanks,
+    });
+  }
+  if (typeof ewert !== "undefined") {
+    setRelations({
+      ...relations,
+      ewert: relations.ewert + ewert,
     });
   }
   if (typeof kodnuklearny !== "undefined") {
@@ -332,6 +344,7 @@ function App() {
     dysk: 1,
     zwlokiewerta: 0,
     hanksprzezyje: 0,
+    ewert: 0,
   });
 
   let videos = {
@@ -766,10 +779,93 @@ function App() {
       zwlokiewerta: 1,
     },
     szukanieinformatyka: {
-      btn1Value: "Przyjmij zlecenie",
-      btn2Value: "Odrzuć zlecenie",
-      nextVid1: "poznaniehanksa",
-      nextVid2: "grzegorzkill",
+      btn1Value: "[Zgódź się na torturowanie informatyka]",
+      btn2Value: `"Nie... Poszukajmy informacji w barze"`,
+      nextVid1: "tortury",
+      nextVid2: "barewert",
+    },
+    tortury: {
+      btn1Value: "[Odejdź]",
+      btn2Value: "[Uściśnij mu dłoń]",
+      nextVid1: "odrzucewerta",
+      nextVid2: "wspolpracazewertem",
+    },
+    odrzucewerta: {
+      btn1Value: "[Kontynuuj]",
+      nextVid1: "treningsamemu",
+      ewert: -10,
+    },
+    wspolpracazewertem: {
+      btn1Value: "[Kontynuuj]",
+      nextVid1: "treningzewertem",
+      ewert: 1,
+    },
+    barewert: {
+      btn1Value: "[Wyjmij broń]",
+      btn2Value: "[Pozwól działać Williamowi]",
+      btn3Value: `"Odłóż to William"`,
+      nextVid1: "twoguns",
+      nextVid2: "onegun",
+      nextVid3: "noguns",
+      ewert: -1,
+    },
+    twoguns: {
+      btn1Value: "[Kontynuuj]",
+      nextVid1: "treningzewertem",
+      ewert: 1,
+    },
+    onegun: {
+      btn1Value: "[Kontynuuj]",
+      nextVid1: "treningzewertem",
+      ewert: 1,
+    },
+    noguns: {
+      btn1Value: "[Kontynuuj]",
+      nextVid1: "treningzewertem",
+      ewert: 0,
+    },
+    treningzewertem: {
+      btn1Value: "[Kontynuuj]",
+      nextVid1: "wejsciezewertemdobazy",
+    },
+    wejsciezewertemdobazy: {
+      btn1Value: "[Kontynuuj]",
+      nextVid1: "ewertzabijagrzegorzaewertline",
+    },
+    ewertzabijagrzegorzaewertline: {
+      btn1Value: "[Kontunuuj]",
+      opt1req: {
+        param: "ewert",
+        expression: "==",
+        value: -1,
+      },
+      btn2Value: "[Kontunuuj]",
+      opt2req: {
+        param: "ewert",
+        expression: "==",
+        value: 0,
+      },
+      btn3Value: "[Kontunuuj]",
+      opt3req: {
+        param: "ewert",
+        expression: "==",
+        value: 1,
+      },
+      nextVid1: "badewert",
+      nextVid2: "neutralewert",
+      nextVid3: "goodewert",
+    },
+    badewert: {
+      btn1Value: "[end]",
+      nextVid1: "badewert",
+    },
+    neutralewert: {
+      btn1Value: "[end]",
+      nextVid1: "neutralewert",
+    },
+    goodewert: {
+      btn1Value: "[end]",
+      nextVid1: "goodewert",
     },
   };
   return (
