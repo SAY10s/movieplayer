@@ -300,6 +300,7 @@ function Video({ videos }) {
         <div className="buttons-wrapper" id="buttonswrapper">
           {buttons}
         </div>
+        {/* <button onClick={}></button> */}
       </div>
     </>
   );
@@ -382,11 +383,11 @@ function handelBtn(
 
   setTimeout(() => {
     document.querySelector("#buttonswrapper").classList.remove("hide");
-  }, questionTime * 1000);
+  }, questionTime * 0.001);
 }
 
 function App() {
-  const [currentVideo, setCurrentVideo] = useState("start");
+  const [currentVideo, setCurrentVideo] = useState("xxx");
   const [relations, setRelations] = useState({
     hanks: 0,
     kodnuklearny: 0,
@@ -404,15 +405,23 @@ function App() {
     relations: relations,
     setCurrentVideo: setCurrentVideo,
     setRelations: setRelations,
+    xxx: {
+      btn1Value: "[GRAJ]",
+      nextVid1: "start",
+      questionTime: 1,
+    },
     start: {
       btn1Value: "Przyjmij zlecenie",
       btn2Value: "Odrzuć zlecenie",
       nextVid1: "poznaniehanksa",
       nextVid2: "grzegorzkill",
+      // questionTime: 30,
+      questionTime: 1,
     },
     grzegorzkill: {
       btn1Value: "[END]",
       nextVid1: "grzegorzkill",
+      questionTime: 13,
     },
     poznaniehanksa: {
       btn1Value: "Napij się z nim",
@@ -421,21 +430,26 @@ function App() {
       nextVid1: "pijecie",
       nextVid2: "pijjaczekam",
       nextVid3: "lapszafraki",
+      // questionTime: 64,
+      questionTime: 1,
     },
     pijecie: {
       btn1Value: "[kontunuuj]",
       nextVid1: "naradawbazie",
       hanks: 1,
+      questionTime: 41,
     },
     pijjaczekam: {
       btn1Value: "[kontunuuj]",
       nextVid1: "naradawbazie",
       hanks: 0,
+      questionTime: 11,
     },
     lapszafraki: {
       btn1Value: "[kontunuuj]",
       nextVid1: "naradawbazie",
       hanks: -1,
+      questionTime: 17,
     },
     naradawbazie: {
       btn1Value: "Idź z Hackerem",
@@ -444,25 +458,30 @@ function App() {
       nextVid1: "linux",
       nextVid2: "naradawojskowa",
       nextVid3: "szukanieinformatyka",
+      questionTime: 61,
     },
     linux: {
       btn1Value: "Bezpieczne hackowanie",
       btn2Value: "Niebezpieczne hackowanie",
       nextVid1: "bezpiecznehackowanie",
       nextVid2: "niebezpiecznehackowanie",
+      questionTime: 32,
     },
     bezpiecznehackowanie: {
       btn1Value: "[kontunuuj]",
       nextVid1: "treningsamemu",
+      questionTime: 17,
     },
     niebezpiecznehackowanie: {
       btn1Value: "[kontunuuj]",
       nextVid1: "treningsamemu",
       kodnuklearny: 1,
+      questionTime: 25,
     },
     treningsamemu: {
       btn1Value: "[kontunuuj]",
       nextVid1: "wejsciedobazysamemu",
+      questionTime: 32,
     },
     wejsciedobazysamemu: {
       btn1Value: "Wpisz kod i wejdź",
@@ -474,16 +493,19 @@ function App() {
       btn2Value: "Idź dalej",
       nextVid1: "zdobyciepilota",
       nextVid2: "ignorujeszdrzwiodbomby",
+      questionTime: 26,
     },
     ignorujeszdrzwiodbomby: {
       btn1Value: "kontunuuj",
       nextVid1: "zabijaniewbazie",
+      questionTime: 2,
     },
     zdobyciepilota: {
       btn1Value: "Użyj pilota",
       btn2Value: "Schowaj pilot do kieszeni",
       nextVid1: "bombaatomowa",
       nextVid2: "schowajpilota",
+      questionTime: 11,
     },
     bombaatomowa: {
       btn1Value: "[END]",
@@ -493,6 +515,7 @@ function App() {
       btn1Value: "kontunuuj",
       nextVid1: "zabijaniewbazie",
       pilot: 1,
+      questionTime: 13,
     },
     zabijaniewbazie: {
       btn1Value: "Wpisz kod",
@@ -504,42 +527,50 @@ function App() {
       btn2Value: "Idź dalej",
       nextVid1: "otwarciedrzwikodem",
       nextVid2: "ignorujeszdrzwinakod",
+      questionTime: 17,
     },
     otwarciedrzwikodem: {
       btn1Value: "[kontunuuj]",
       nextVid1: "walkazewertemwbazie",
+      querySelector: 61,
     },
     ignorujeszdrzwinakod: {
       btn1Value: "[kontunuuj]",
       nextVid1: "walkazewertemwbazie",
+      questionTime: 6,
     },
     walkazewertemwbazie: {
       btn1Value: "Zabij Williama",
       btn2Value: "Oszczędź williama",
       nextVid1: "zabijewertawbazie",
       nextVid2: "wypuscewertawbazie",
+      questionTime: 17,
     },
     zabijewertawbazie: {
       btn1Value: "[kontunuuj]",
       nextVid1: "ucieczkasamemu",
       ewertzyje: 0,
+      questionTime: 3,
     },
     wypuscewertawbazie: {
       btn1Value: "[kontunuuj]",
       nextVid1: "ucieczkasamemu",
       ewertzyje: 1,
+      questionTime: 6,
     },
     ucieczkasamemu: {
       btn1Value: "Spotkaj się z hanksem",
       nextVid1: "rozmowazhanksem",
+      questionTime: 10,
     },
     rozmowazhanksem: {
       btn1Value: "Daj dysk Hanksowi",
       btn2Value: `"Przykro mi Hanks... nie mogę"`,
       nextVid1: "niszczydysk",
-      nextVid2: "walkazhanksemjeden",
+      nextVid2: "wzh",
+      questionTime: 20,
     },
-    walkazhanksemjeden: {
+    wzh: {
       btn1Value: "[kontynuuj]",
       opt1req: {
         param: "hanks",
@@ -554,6 +585,7 @@ function App() {
       },
       nextVid1: "hanksciezabija",
       nextVid2: "wygrywaszzhanksem",
+      questionTime: 5,
     },
     niszczydysk: {
       btn1Value: "[Kontunuuj]",
@@ -578,6 +610,7 @@ function App() {
       nextVid2: "hanksidziesolo",
       nextVid3: "idziesznagrzegorzazhanksem",
       dysk: 0,
+      questionTime: 15,
     },
     walkazhanksem: {
       btn1Value: "[kontynuuj]",
@@ -594,10 +627,12 @@ function App() {
       },
       nextVid1: "hanksciezabija",
       nextVid2: "wygrywaszzhanksem",
+      questionTime: 3,
     },
     hanksciezabija: {
       btn1Value: "[END]",
       nextVid1: "hanksciezabija",
+      questionTime: 60,
     },
     wygrywaszzhanksem: {
       btn1Value: "Zrzuć Hanksa",
@@ -628,18 +663,22 @@ function App() {
       nextVid2: "zabijhanksazwlokiewerta",
       nextVid3: "wypuschanksa",
       nextVid4: "wypuschanksazwlokiewerta",
+      questionTime: 12,
     },
     zabijhanksa: {
       btn1Value: "[kontynuuj]",
       nextVid1: "podejsciedogrzegorza",
+      questionTime: 4,
     },
     zabijhanksazwlokiewerta: {
       btn1Value: "[kontynuuj]",
       nextVid1: "podejsciedogrzegorza",
+      questionTime: 5,
     },
     wypuschanksa: {
       btn1Value: "[kontynuuj]",
       nextVid1: "hankssolopowypuszczeniu",
+      questionTime: 8,
     },
     wypuschanksazwlokiewerta: {
       btn1Value: "[kontynuuj]",
@@ -648,10 +687,12 @@ function App() {
     hankssolopowypuszczeniu: {
       btn1Value: "[END]",
       nextVid1: "hankssolopowypuszczeniu",
+      questionTime: 48,
     },
     hanksidziesolo: {
       btn1Value: "[kontynuuj]",
       nextVid1: "podejsciedogrzegorza",
+      questionTime: 14,
     },
     podejsciedogrzegorza: {
       btn1Value: "[Daj dysk Grzegorzowi]",
@@ -663,10 +704,12 @@ function App() {
       btn2Value: "Teraz wiem już o wszystkim... [nie dawaj dysku]",
       nextVid1: "dajdyskgrzegorzowi",
       nextVid2: "niedawajdysku",
+      questionTime: 6,
     },
     dajdyskgrzegorzowi: {
       btn1Value: "[END]",
       nextVid1: "dajdyskgrzegorzowi",
+      questionTime: 42,
     },
     niedawajdysku: {
       btn1Value: "[Kontynuuj]",
@@ -690,18 +733,22 @@ function App() {
       nextVid1: "poddajsie",
       nextVid2: "bombagrzegorz",
       nextVid3: "ewertzabijagrzegorza",
+      questionTime: 48,
     },
     poddajsie: {
       btn1Value: "[END]",
       nextVid1: "poddajsie",
+      questionTime: 6,
     },
     bombagrzegorz: {
       btn1Value: "[END]",
       nextVid1: "bombagrzegorz",
+      questionTime: 41,
     },
     ewertzabijagrzegorza: {
       btn1Value: "[END]",
       nextVid1: "ewertzabijagrzegorza",
+      questionTime: 41,
     },
     idziesznagrzegorzazhanksem: {
       btn1Value: "[Kontynuuj]",
@@ -718,22 +765,26 @@ function App() {
       },
       nextVid1: "walkazgrzegorzemrazemzhanksem",
       nextVid2: "chcecicosdac",
+      questionTime: 8,
     },
     chcecicosdac: {
       btn1Value: "[Daj mu papierośnicę]",
       btn2Value: "[Daj mu wódkę]",
       nextVid1: "papierosnica",
       nextVid2: "wodka",
+      questionTime: 7,
     },
     papierosnica: {
       btn1Value: "[kontunuuj]",
       nextVid1: "walkazgrzegorzemrazemzhanksem",
       hanksprzezyje: 2,
+      questionTime: 9,
     },
     wodka: {
       btn1Value: "[kontunuuj]",
       nextVid1: "walkazgrzegorzemrazemzhanksem",
       hanksprzezyje: 1,
+      questionTime: 9,
     },
     walkazgrzegorzemrazemzhanksem: {
       btn1Value: "[Kontunuuj]",
@@ -757,90 +808,107 @@ function App() {
       nextVid1: "hanksumiera",
       nextVid2: "hanksumierazwodka",
       nextVid3: "hankszyje",
+      questionTime: 54,
     },
     hanksumiera: {
       btn1Value: "[END]",
       nextVid1: "hanksumiera",
+      questionTime: 35,
     },
     hanksumierazwodka: {
       btn1Value: "[END]",
       nextVid1: "hanksumierazwodka",
+      questionTime: 55,
     },
     hankszyje: {
       btn1Value: "[kontunuuj]",
       nextVid1: "hankszyje",
+      questionTime: 38,
     },
     naradawojskowa: {
       btn1Value: "Zabij dzieci w Afryce",
       btn2Value: `"To... nieludzkie"`,
       nextVid1: "niggersdie",
       nextVid2: "niggerslive",
+      questionTime: 61,
     },
     niggersdie: {
       hanks: -1,
       koddodrzwi: 1,
       btn1Value: "[kontunuuj]",
       nextVid1: "treningsamemu",
+      questionTime: 16,
     },
     niggerslive: {
       hanks: 1,
-      btn1Value: "Tak? A ja mam to w dupie.",
-      btn2Value: "[słuchaj dalej]",
-      btn3Value: `"Ooo, a co było dalej? "`,
+      btn1Value: "Kim byli twoi przyjaciele? [szorstko]",
+      btn2Value: "Co sądzisz o akcji? [bez zainteresowania]",
+      btn3Value: "Jak długo juz tu jesteś? [przyjaźnie]",
       nextVid1: "walsiehanks",
       nextVid2: "sluchamhanksa",
       nextVid3: "sluchamzzainteresowaniem",
+      questionTime: 56,
     },
     walsiehanks: {
       hanks: -1,
       btn1Value: "[kontunuuj]",
       nextVid1: "treningzhanksem",
+      questionTime: 8,
     },
     sluchamhanksa: {
       hanks: 0,
       btn1Value: "[kontunuuj]",
       nextVid1: "treningzhanksem",
+      questionTime: 9,
     },
     sluchamzzainteresowaniem: {
       hanks: 1,
       btn1Value: "[kontunuuj]",
       nextVid1: "treningzhanksem",
+      questionTime: 25,
     },
     treningzhanksem: {
       btn1Value: "[kontunuuj]",
       nextVid1: "bazazhanksem",
+      questionTime: 32,
     },
     bazazhanksem: {
       btn1Value: "[kontunuuj]",
       nextVid1: "rozmowazhanksemzabicieewerta",
       ewertzyje: 0,
+      questionTime: 57,
     },
     rozmowazhanksemzabicieewerta: {
       btn1Value: "[kontunuuj]",
       nextVid1: "rozmowazhanksem",
       zwlokiewerta: 1,
+      questionTime: 19,
     },
     szukanieinformatyka: {
       btn1Value: "[Zgódź się na torturowanie informatyka]",
       btn2Value: `"Nie... Poszukajmy informacji w barze"`,
       nextVid1: "tortury",
       nextVid2: "barewert",
+      questionTime: 11,
     },
     tortury: {
       btn1Value: "[Odejdź]",
       btn2Value: "[Uściśnij mu dłoń]",
       nextVid1: "odrzucewerta",
       nextVid2: "wspolpracazewertem",
+      questionTime: 26,
     },
     odrzucewerta: {
       btn1Value: "[Kontynuuj]",
       nextVid1: "treningsamemu",
       ewert: -10,
+      questionTime: 8,
     },
     wspolpracazewertem: {
       btn1Value: "[Kontynuuj]",
       nextVid1: "treningzewertem",
       ewert: 1,
+      questionTime: 5,
     },
     barewert: {
       btn1Value: "[Wyjmij broń]",
@@ -849,30 +917,36 @@ function App() {
       nextVid1: "twoguns",
       nextVid2: "onegun",
       nextVid3: "noguns",
+      questionTime: 18,
       ewert: -1,
     },
     twoguns: {
       btn1Value: "[Kontynuuj]",
       nextVid1: "treningzewertem",
       ewert: 1,
+      questionTime: 18,
     },
     onegun: {
       btn1Value: "[Kontynuuj]",
       nextVid1: "treningzewertem",
       ewert: 1,
+      questionTime: 21,
     },
     noguns: {
       btn1Value: "[Kontynuuj]",
       nextVid1: "treningzewertem",
       ewert: 0,
+      questionTime: 19,
     },
     treningzewertem: {
       btn1Value: "[Kontynuuj]",
       nextVid1: "wejsciezewertemdobazy",
+      questionTime: 32,
     },
     wejsciezewertemdobazy: {
       btn1Value: "[Kontynuuj]",
       nextVid1: "ewertzabijagrzegorzaewertline",
+      questionTime: 60,
     },
     ewertzabijagrzegorzaewertline: {
       btn1Value: "[Kontunuuj]",
@@ -896,18 +970,22 @@ function App() {
       nextVid1: "badewert",
       nextVid2: "neutralewert",
       nextVid3: "goodewert",
+      questionTime: 17,
     },
     badewert: {
       btn1Value: "[END]",
       nextVid1: "badewert",
+      questionTime: 20,
     },
     neutralewert: {
       btn1Value: "[END]",
       nextVid1: "neutralewert",
+      questionTime: 33,
     },
     goodewert: {
       btn1Value: "[END]",
       nextVid1: "goodewert",
+      questionTime: 39,
     },
   };
   return (
