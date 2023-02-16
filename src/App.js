@@ -300,11 +300,20 @@ function Video({ videos }) {
         <div className="buttons-wrapper" id="buttonswrapper">
           {buttons}
         </div>
+        <div className="skip" onClick={skip}>
+          SKIP
+        </div>
         {/* <button onClick={}></button> */}
       </div>
     </>
   );
 }
+function skip() {
+  document.querySelector("#buttonswrapper").classList.remove("hide");
+  clearTimeout(globaltimeoutid);
+}
+let globaltimeoutid;
+
 function handelBtn(
   nextVideo,
   setCurrentVideo,
@@ -319,7 +328,8 @@ function handelBtn(
   dysk,
   zwlokiewerta,
   hanksprzezyje,
-  ewert
+  ewert,
+  timeoutId
 ) {
   if (typeof questionTime == "undefined") questionTime = 0;
   document.querySelector("#buttonswrapper").classList.add("hide");
@@ -381,9 +391,9 @@ function handelBtn(
     });
   }
 
-  setTimeout(() => {
+  timeoutId = setTimeout(() => {
     document.querySelector("#buttonswrapper").classList.remove("hide");
-  }, questionTime * 0.001);
+  }, questionTime * 1000);
 }
 
 function App() {
@@ -415,8 +425,7 @@ function App() {
       btn2Value: "Odrzuć zlecenie",
       nextVid1: "poznaniehanksa",
       nextVid2: "grzegorzkill",
-      // questionTime: 30,
-      questionTime: 1,
+      questionTime: 30,
     },
     grzegorzkill: {
       btn1Value: "[END]",
@@ -430,8 +439,7 @@ function App() {
       nextVid1: "pijecie",
       nextVid2: "pijjaczekam",
       nextVid3: "lapszafraki",
-      // questionTime: 64,
-      questionTime: 1,
+      questionTime: 64,
     },
     pijecie: {
       btn1Value: "[kontunuuj]",

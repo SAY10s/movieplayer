@@ -127,3 +127,8 @@ video {
   font-size: 48px;
   margin-bottom: 10px;
 }
+
+.skip {
+  position: absolute;
+  bottom: -100px;
+}
